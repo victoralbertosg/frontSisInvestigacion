@@ -1,0 +1,105 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+
+  Sistema de Gestion de trabajos de investigacion
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon"
+    (click)="logout()"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="https://source.unsplash.com/c_GmwfHBDzk/200x200"
+    />
+
+    <h4 class="name">Victor Soto</h4>
+    <p class="designation">Software Engineer</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" [routerLink]="['/home']">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+    <button mat-button class="menu-button" [routerLink]="['/usuario']">
+      <mat-icon>person</mat-icon>
+      <span>usuario</span>
+    </button>
+    <button mat-button class="menu-button" [routerLink]="['/facultad']">
+      <mat-icon>person</mat-icon>
+      <span>Facultad</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" [routerLink]="['/proyecto/1']">
+      <mat-icon>info</mat-icon>
+      <span>Registro de trabajos</span>
+    </button>
+    <button mat-button class="menu-button" [routerLink]="['/proyecto/2']">
+      <mat-icon>info</mat-icon>
+      <span>trabajos observados</span>
+    </button>
+    <button mat-button class="menu-button" [routerLink]="['/proyecto/3']">
+      <mat-icon>info</mat-icon>
+      <span>Revision de trabajos</span>
+    </button>
+   <!-- <div *ngIf="rol==3">-->
+      <button mat-button class="menu-button" [routerLink]="['/proyecto/5']">
+        <mat-icon>info</mat-icon>
+        <span>Aprobacion de trabajos{{rol}}</span>
+      </button>
+   <!--</div>-->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!--
+<mat-drawer-container class="global-content">
+  <mat-drawer #drawer mode="side">
+     <a [routerLink]="['/home']">Inicio</a><br>
+     <a [routerLink]="['/usuario']">usuario</a><br>
+     <a [routerLink]="['/facultad']">facultad</a><br>
+     <a [routerLink]="['/proyecto/1']">Registrar Trabajos de investigacion</a><br>
+     <a [routerLink]="['/proyecto/2']">Evaluar trabajos de investigacion</a><br>
+     <a [routerLink]="['/proyecto/3']">Validar-publicación de trabajos de investigación</a><br>
+      <a (click)="logout()" *ngIf="user">cerrar sesión</a>
+  </mat-drawer>
+
+  <div>
+    <button (click)="drawer.toggle();">Mostrar/ocultar</button>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+-->

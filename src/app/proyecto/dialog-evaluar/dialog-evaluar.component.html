@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Evaluar trabajo de investigación</h1>
+<div mat-dialog-content>
+
+      
+        <mat-form-field appearance="legacy">
+                <mat-label>titulo</mat-label>
+                <input readonly matInput [(ngModel)]="titulo" placeholder="titulo" />
+                <mat-hint>titulo</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+                <mat-label>Asesor</mat-label>
+                <input readonly matInput [(ngModel)]="asesor" placeholder="asesor" />
+                <mat-hint>asesor</mat-hint>
+        </mat-form-field>
+        <mat-radio-group aria-label="Seleccione:" [(ngModel)]="rb">
+                <mat-radio-button value="1">Aprobar trabajo</mat-radio-button>
+                <mat-radio-button value="2">Devolver para revisión</mat-radio-button>
+        </mat-radio-group>
+  <form [formGroup]="evaluacionForm" (ngSubmit)="evaluar()">
+ 
+    <mat-form-field appearance="fill">
+      <mat-label>Observación</mat-label>
+      <input matInput formControlName="observacion" placeholder="observacion" />
+      <mat-hint>observacion</mat-hint>
+    </mat-form-field>
+    <div>
+      <button
+        type="submit"
+        [disabled]="!evaluacionForm.valid"
+        mat-raised-button
+      >
+        Guardar
+      </button>
+      <button mat-raised-button (click)="close()">cancelar</button>
+    </div>
+  </form>
+</div>

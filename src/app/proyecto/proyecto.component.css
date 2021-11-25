@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+
+
+
+.mat-column-titulo {        
+  padding-right: 24px;   
+}
+.mat-column-alumno {      
+  padding-right: 24px;    
+}
+.mat-column-descripcion {      
+  padding-right: 24px;    
+}  
+.mat-column-idtrab_investigacion {      
+  padding-right: 24px;    
+}

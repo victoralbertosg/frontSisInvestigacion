@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Facultades-Especialidad</h1>
+<div mat-dialog-content>
+   
+        <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Facultad</mat-label>
+                  <input matInput [(ngModel)]="facultad.descripcion" placeholder="Facultad">                
+                  <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+        </p>
+
+        <form [formGroup]="especialidadForm" (ngSubmit)="addEspecialidad()">
+                <p>
+                        <mat-form-field appearance="legacy">
+                          <mat-label>Especialidad</mat-label>
+                          <input matInput formControlName="descripcion" placeholder="Especialidad">                         
+                          <mat-hint>Hint</mat-hint>
+                        </mat-form-field>                      
+                </p>
+                <div>
+                    <button type="submit" [disabled]="!especialidadForm.valid" mat-raised-button>+</button>
+                </div>
+        </form>
+        
+        <div>
+            <h5>Especialidades</h5>
+            <table style="width:100%">
+                <tr>
+                    <th>especialidad</th>
+                    <th>facultad</th>
+                </tr>  
+                <tr *ngFor="let item of especialidades">
+                        <td>{{item.descripcion}}</td>                      
+                </tr>  
+            </table>
+        </div>
+</div>
+<div mat-dialog-actions>
+        <button mat-raised-button (click)="close()">cancelar</button>
+        <button mat-raised-button color="primary"
+        (click)="addFacultad()">guardar</button>
+</div>
+    
