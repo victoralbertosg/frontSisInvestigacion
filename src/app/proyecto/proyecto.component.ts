@@ -46,7 +46,7 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
   public paramEtapa:number;
   public proyByIdInv:Proyecto;
   public res:Response;
-
+  
   //public datepipe:DatePipe;
  
   constructor(private authService:ApiauthService,
@@ -59,6 +59,8 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
               public datepipe: DatePipe) {}
 
   iduser:number=this.authService.userData.idusuario;
+  rol:number=this.authService.userData.rol;
+
   
   ngOnInit(): void {  
       console.log(this.rutaActiva.snapshot.params);
@@ -76,6 +78,7 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }*/
 
+  /*
   getProyecto(){
     this.proyectoService.getallByUser(this.iduser).subscribe(response=>this.lst=response.data)         
   }
@@ -89,10 +92,39 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
       this.dataSource = new MatTableDataSource<ProyectoLista>(this.lst);
       console.log ('lista datasource',this.dataSource);
       this.dataSource.paginator = this.paginator;
-      });         
-    }   
-  
+      });               
+    }   */
+    getProyecto(){
+      this.proyectoService.getallByUser(this.iduser).subscribe(response=>this.lst=response.data)         
+    }
+    getProyecto1(etapa:number){
+      this.lstFiltrado=[];      
+      console.log('parausuario',this.iduser);
+      console.log('etapa:',etapa);
+      console.log('rol:',this.rol);
+      if (etapa==7){
+        this.mostrarDatos(etapa);
+      }else if (etapa!=5){
+        this.mostrarDatos(etapa);
+      }else if (this.rol==3){      
+        this.mostrarDatos(etapa);     
+      } else{
+       // this.mostrarDatos(0);
+        this.dataSource = new MatTableDataSource<ProyectoLista>([]);
+      }
 
+
+      }   
+      mostrarDatos(etapa:number){
+          this.proyectoService.getallByUserByEtapa(this.iduser,Number(etapa)).subscribe(response=>{      
+          this.lstFiltrado.push(response);
+          this.lst=this.lstFiltrado[0];     
+          this.dataSource = new MatTableDataSource<ProyectoLista>(this.lst);
+          console.log ('lista datasource',this.dataSource);
+          this.dataSource.paginator = this.paginator;
+          });
+      }
+  
   openAdd(){
     const dialogRef= this.dialog.open( DialogProyectoComponent,{
       width:this.width
@@ -110,19 +142,18 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
     })
   }*/
 
-  openVer(id:number){
-    
-   
+  openVer(id:number){   
     console.log("idinv",id);
     this.regInvService.getRegByIdinv(id).subscribe(r=>{
         this.res=r;
+        console.log('datos enviar', this.res)
     });
     const dialogRef= this.dialog.open( DialogVerComponent,{
-      width:this.width,
+      width:'800px',
       data:this.res.data
       });
-        dialogRef.afterClosed().subscribe(result=>{
-        this.getProyecto1(this.paramEtapa);  
+      dialogRef.afterClosed().subscribe(result=>{
+      //this.getProyecto1(this.paramEtapa);  
       });
   }
   openEdit(proy:Proyecto){
@@ -232,6 +263,14 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
         return false;
     }    
 }
+mostrarEvaluarEditar():boolean{
+  if(this.paramEtapa==2 || this.paramEtapa==7) {
+    return false;
+      }
+      else { 
+        return true;
+    } 
+  }
 
 EditarLabel(etapa:Number):String{
     if (this.paramEtapa==1) {

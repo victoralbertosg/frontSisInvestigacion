@@ -33,21 +33,25 @@ getallByUserByEtapa(id: number, etapaP:number):Observable<Response>{
   }
     else if (etapaP==3) {
       this.urls=this.url1;
-    }else if (etapaP==5){
+    }else if (etapaP==5 || etapaP==7){
       this.urls=this.url;
       return this._http.get<Response>(`${this.urls}`).pipe(
         map(res=>
           res.data.filter((rf:any)=>rf.etapa===etapaP)
       )
       )
-    } 
-  
+    }
+    
+    
+     
   return this._http.get<Response>(`${this.urls}/${id}`).pipe(
     map(res=>
       res.data.filter((rf:any)=>rf.etapa===etapaP)
   )
   )
 }
+
+
 getByTrabInv(id:number):Observable<Response>{
     return this._http.get<Response>(`${this.url}/trabinv/${id}`)
 } 

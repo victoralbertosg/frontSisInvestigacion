@@ -51,7 +51,9 @@ export class DialogEvaluarComponent implements OnInit {
       this.registrar(this.etapa);      
       //console.log('etapa',this.etapa);
   }
-  close(){}
+  close(){
+    this.dialogRef.close(); 
+  }
 
 
   registrar(etapa:number){

@@ -28,7 +28,7 @@ export class AppComponent implements OnInit{
  ngOnInit(): void {
   this.rol=this.apiauthService.userData.rol;
   console.log ('init rol',this.rol);
-  
+ // this.router.navigate(['/proyecto/0']);
   //ser=this.apiauthService.userData;
  }
 logout(){

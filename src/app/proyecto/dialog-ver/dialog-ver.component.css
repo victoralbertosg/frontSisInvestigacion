@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+  }
+  .mat-column-idtrabInvestigacion {        
+    padding-right: 24px;   
+  }
+  .mat-column-idregInv {        
+    padding-right: 24px;   
+  }
+  .mat-column-idusuario {        
+    padding-right: 24px;   
+  }
+  .mat-column-fecha {        
+    padding-right: 24px;   
+  }
+  .mat-column-observaciones {        
+    padding-right: 24px;   
+  }
+  

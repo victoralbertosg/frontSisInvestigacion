@@ -50,7 +50,7 @@
       color="primary">
       Enviar a revisión
     </button>
-      <button *ngIf="paramEtapa!=2" (click)="openEdit(element)" mat-raised-button color="basic">
+      <button *ngIf="mostrarEvaluarEditar()" (click)="openEdit(element)" mat-raised-button color="basic">
         {{ EditarLabel(1) }}
       </button>
 
