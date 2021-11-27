@@ -146,15 +146,17 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
     console.log("idinv",id);
     this.regInvService.getRegByIdinv(id).subscribe(r=>{
         this.res=r;
-        console.log('datos enviar', this.res)
-    });
-    const dialogRef= this.dialog.open( DialogVerComponent,{
-      width:'800px',
-      data:this.res.data
-      });
-      dialogRef.afterClosed().subscribe(result=>{
+        console.log('datos enviar', this.res);
+        const dialogRef= this.dialog.open( DialogVerComponent,{
+          width:'800px',
+          data:this.res
+          });
+    })
+
+      
+      //dialogRef.afterClosed().subscribe(result=>{
       //this.getProyecto1(this.paramEtapa);  
-      });
+      //});
   }
   openEdit(proy:Proyecto){
     if(this.paramEtapa==1) {
