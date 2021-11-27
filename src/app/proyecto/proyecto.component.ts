@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {Response} from '../models/response';
-import {Respuesta} from '../models/respuesta';
+//import {Respuesta} from '../models/respuesta';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProyectoLista } from '../models/proyectoLista';
 import { Reginv } from '../models/registroInv';
@@ -26,7 +26,7 @@ import { DialogVerComponent } from './dialog-ver/dialog-ver.component';
   templateUrl: './proyecto.component.html',
   styleUrls: ['./proyecto.component.css']
 })
-export class ProyectoComponent implements OnInit,AfterViewInit {
+export class ProyectoComponent implements OnInit {
  
   //paginator
   @ViewChild(MatSort) sort: MatSort;  
@@ -34,11 +34,10 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
   pageLength: number;
   pageSize: 5;
   pageSizeOptions = [5, 10, 25, 100];
-  public dataSource:MatTableDataSource<any>;
   pageNumber: any;
- 
- 
-  //
+  // origen de datos de la tabla
+  public dataSource:MatTableDataSource<any>; 
+  //variables comunes
   public lst:ProyectoLista[];
   public lstFiltrado:any[];
   displayedColumns: string[] = ['idtrab_investigacion', 'titulo', 'descripcion', 'alumno','asesor','actions'];
@@ -57,12 +56,13 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
              // public dialogRef:MatDialogRef<DialogEnviarComponent>,
               public snackBar:MatSnackBar,
               public datepipe: DatePipe) {}
+ 
 
   iduser:number=this.authService.userData.idusuario;
   rol:number=this.authService.userData.rol;
 
-  
   ngOnInit(): void {  
+      
       console.log(this.rutaActiva.snapshot.params);
       this.rutaActiva.params.subscribe(
       (params: Params) => {
@@ -70,6 +70,7 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
         this.getProyecto1(this.paramEtapa);     
       }
     );
+     
   }
  // dataSource = new MatTableDataSource(this.lst);
 
@@ -97,6 +98,7 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
     getProyecto(){
       this.proyectoService.getallByUser(this.iduser).subscribe(response=>this.lst=response.data)         
     }
+   //cargar datos
     getProyecto1(etapa:number){
       this.lstFiltrado=[];      
       console.log('parausuario',this.iduser);
@@ -112,7 +114,6 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
        // this.mostrarDatos(0);
         this.dataSource = new MatTableDataSource<ProyectoLista>([]);
       }
-
 
       }   
       mostrarDatos(etapa:number){
@@ -223,45 +224,15 @@ export class ProyectoComponent implements OnInit,AfterViewInit {
   }
   
 
-  
 
-  //paginator
-  ngAfterViewInit() {
-   // this.dataSource.sort = this.sort;
-    //this.dataSource.paginator = this.paginator;    
-  }    
-  onChangePage(pe:PageEvent) {
-    console.log(pe.pageIndex);
-    console.log(pe.pageSize);
-  }
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
-  goToPage() {
-    this.paginator.pageIndex = this.pageNumber, // number of the page you want to jump.
-      this.paginator.page.next({
-        pageIndex: this.pageNumber,
-        pageSize: this.paginator.pageSize,
-        length: this.paginator.length
-      });
-  }
-  custom() {
     
-    //this.dataSource = new MatTableDataSource();
-    this.paginator.pageIndex = this.pageNumber
-   // this.dataSource = new MatTableDataSource<ProyectoLista>(this.lst);
-    
-  }
 
-  esEtapa1():boolean {
-            
+
+//condicione para mostrar boton y cambio label  
+esEtapa1():boolean {            
     if(this.paramEtapa==1 || this.paramEtapa==2) {
             return true;
-    }
-     else { 
+    }else { 
         return false;
     }    
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiusuarioService } from '../services/apiusuario.service';
 import {Response} from '../models/response';
 import {DialogusuarioComponent} from './dialog/dialogusuario.component';
@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Usuario } from '../models/usuario';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteComponent } from '../common/delete/delete.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -13,9 +15,11 @@ import { DeleteComponent } from '../common/delete/delete.component';
 })
 export class UsuarioComponent implements OnInit {
 
-  public lst!: any[];
+  //public lst!: any[];
+  public lst:MatTableDataSource<any>;
   public columnas: string[]=['idusuario','idpersona','nombre','Apellido','actions'];
-  readonly width:string='300px'
+  readonly width:string='300px';
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private apiUsuario:ApiusuarioService,
     public dialog: MatDialog,
@@ -27,8 +31,9 @@ export class UsuarioComponent implements OnInit {
   }
   getUsuarios(){
     this.apiUsuario.getUsuarios().subscribe(response=>{
-      this.lst=response.data;
-      
+      //this.lst=response.data;
+      this.lst = new MatTableDataSource<Usuario>(response.data);
+      this.lst.paginator = this.paginator;      
       console.log(this.lst);
     })
   }

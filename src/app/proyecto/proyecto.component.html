@@ -4,7 +4,10 @@
       </mat-form-field>-->
 
 <div *ngIf="paramEtapa==1">
-  <button mat-raised-button color="primary" (click)="openAdd()">Nuevo</button>
+  <button mat-raised-button color="primary" (click)="openAdd()">
+    <mat-icon>create</mat-icon>
+    <span>Nuevo</span>
+  </button>    
 </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   <!-- Position Column -->
@@ -60,7 +63,8 @@
         mat-raised-button
         color="warn"
       >
-        eliminar
+      <mat-icon>delete_outline</mat-icon>
+      <span>Eliminar</span>        
       </button>
     
     </th>
@@ -76,6 +80,7 @@
 </table>
 
 <mat-paginator
-  [pageSizeOptions]="[5, 10, 20]"
-  (page)="goToPage()"
+  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons  
 ></mat-paginator>
+
+<!--(page)="goToPage()"-->

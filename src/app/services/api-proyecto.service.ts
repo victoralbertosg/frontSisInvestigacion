@@ -18,7 +18,7 @@ export class ApiProyectoServiceService {
 
 constructor(private _http:HttpClient) { }
 
-url:string= 'http://localhost:13569/api/Proyecto';
+url:string= 'http://localhost:13569/api/proyecto';
 url1:string='http://localhost:13569/api/proyecto/asesor';
 url2:string='http://localhost:13569/api/proyecto/user';
 urls:string;
