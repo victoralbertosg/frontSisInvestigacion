@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Response} from '../models/response'
+import {Response} from '../models/response';
+import { environment } from 'src/environments/environment';
 
 
 const httpOption={
@@ -14,7 +15,8 @@ const httpOption={
 })
 export class TipoInvestigacionService {
 
-  url:string='http://localhost:13569/api/Tipo_Inv';
+  //url:string='http://localhost:13569/api/Tipo_Inv';
+  url:string=`${environment.urlPrincipal}/api/Tipo_Inv`;
   constructor(
     private _http:HttpClient
   ) { }

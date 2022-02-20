@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import {map } from 'rxjs/operators';
 import {Response} from '../models/response';
 import { Login } from '../models/login';
+import { environment } from 'src/environments/environment';
 const httOption={
   headers:new HttpHeaders({
     'Contend-Type':'application/json'
@@ -14,7 +15,8 @@ const httOption={
   providedIn: 'root'
 })
 export class ApiauthService {
-url:string='http://localhost:13569/api/User/login';
+//url:string='http://localhost:13569/api/User/login';
+url:string=`${environment.urlPrincipal}/api/User/login`;
 
 private userSubject:BehaviorSubject<User>;
 public user:Observable<User>;

@@ -5,7 +5,7 @@ import { ApiauthService } from './apiauth.service';
 import { Observable } from 'rxjs';
 import { filter, map, flatMap } from 'rxjs/operators';
 import { Proyecto } from '../models/proyecto';
-
+import { environment } from 'src/environments/environment';
 const httpOptions={
   headers: new HttpHeaders({
     'Content-Type':'application/json'
@@ -18,9 +18,11 @@ export class ApiProyectoServiceService {
 
 constructor(private _http:HttpClient) { }
 
-url:string= 'http://localhost:13569/api/proyecto';
-url1:string='http://localhost:13569/api/proyecto/asesor';
-url2:string='http://localhost:13569/api/proyecto/user';
+//url:string= 'http://localhost:13569/api/proyecto';
+url:string= `${environment.urlPrincipal}/api/proyecto`;
+//url1:string='http://localhost:13569/api/proyecto/asesor';
+url1:string=`${environment.urlPrincipal}/api/proyecto/asesor`;
+url2:string=`${environment.urlPrincipal}/api/proyecto/user`;
 urls:string;
 
 getallByUser(id: number):Observable<Response>{

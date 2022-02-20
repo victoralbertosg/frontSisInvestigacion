@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Response} from '../models/response'
 import { Usuario } from '../models/usuario';
+import { environment } from 'src/environments/environment';
 
 const httpOption={
   headers:new HttpHeaders({
@@ -14,7 +15,8 @@ const httpOption={
 })
 export class ApiusuarioService {
 
-  url:string='http://localhost:13569/api/Usuario';
+  //url:string='http://localhost:13569/api/Usuario';
+  url:string=`${environment.urlPrincipal}/api/Usuario`;
   
   constructor(
     private _http:HttpClient

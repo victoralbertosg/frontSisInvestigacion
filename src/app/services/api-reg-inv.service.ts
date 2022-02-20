@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reginv } from '../models/registroInv';
 import {Response} from '../models/response';
+import { environment } from 'src/environments/environment';
 
 
 const httpOption={
@@ -15,7 +16,8 @@ const httpOption={
 })
 export class ApiRegInvService {
 
-  url:string='http://localhost:13569/api/RegInv';
+  //url:string='http://localhost:13569/api/RegInv';
+  url:string=`${environment.urlPrincipal}/api/RegInv`;
 
   constructor(private _http:HttpClient) { }
 

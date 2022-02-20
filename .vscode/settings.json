@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/38c130a5-ad12-4b31-b608-c2754190cae6/resourceGroups/titanet/providers/Microsoft.Web/sites/postgragounfv",
+    "appService.deploySubpath": "."
+}
