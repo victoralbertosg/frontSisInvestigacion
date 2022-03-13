@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/proyecto/7']);
+   // this.router.navigate(['/proyecto/7']);
   }
 
 }

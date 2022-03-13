@@ -12,14 +12,13 @@
     </mat-icon>
   </button>
 
-  Sistema de Gestion de trabajos de investigacion
+  Escuela Universitaria de Postgrado
   <span class="example-spacer"></span>
   <button
     mat-icon-button
     class="example-icon"
     (click)="logout()"
-    aria-label="Example icon-button with menu icon"
-  >
+    aria-label="Example icon-button with menu icon"  >
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
@@ -30,48 +29,47 @@
       class="avatar mat-elevation-z8"
       src="https://source.unsplash.com/c_GmwfHBDzk/200x200"
     />
-
     <h4 class="name">Victor Soto</h4>
     <p class="designation">Software Engineer</p>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" [routerLink]="['/home']">
+    <button mat-button class="menu-button" [routerLink]="['/home']" (click)="sidenav.toggle()">      
       <mat-icon>home</mat-icon>
       <span>Inicio</span>
     </button>
-    <button mat-button class="menu-button" [routerLink]="['/usuario']">
+    <button mat-button class="menu-button" [routerLink]="['/usuario']" (click)="sidenav.toggle()">
       <mat-icon>group_add</mat-icon>
       <span>usuario</span>
     </button>
-    <button mat-button class="menu-button" [routerLink]="['/facultad']">
+    <button mat-button class="menu-button" [routerLink]="['/facultad']"(click)="sidenav.toggle()">
       <mat-icon>domain</mat-icon>
       <span>Facultad</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" (click)="sidenav.toggle()">
       <mat-icon>help</mat-icon>
       <span>Help</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" [routerLink]="['/proyecto/1']">
+    <button mat-button class="menu-button" [routerLink]="['/proyecto/1']" (click)="sidenav.toggle()">
       <mat-icon>add_circle_outline</mat-icon>
       <span>Registro de trabajos</span>
     </button>
-    <button mat-button class="menu-button" [routerLink]="['/proyecto/2']">
+    <button mat-button class="menu-button" [routerLink]="['/proyecto/2']" (click)="sidenav.toggle()">
       <mat-icon>event_busy</mat-icon>
       <span>trabajos observados</span>
     </button>
-    <button mat-button class="menu-button" [routerLink]="['/proyecto/3']">
+    <button mat-button class="menu-button" [routerLink]="['/proyecto/3']"(click)="sidenav.toggle()">
       <mat-icon>supervisor_account</mat-icon>
       <span>Revision de trabajos</span>
     </button>
    <!-- <div *ngIf="rol==3">-->
-      <button mat-button class="menu-button" [routerLink]="['/proyecto/5']">        
+      <button mat-button class="menu-button" [routerLink]="['/proyecto/5']"(click)="sidenav.toggle()">        
         <mat-icon>thumb_up</mat-icon>
         <span>Aprobacion de trabajos{{rol}}</span>
       </button>
